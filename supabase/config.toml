@@ -1,0 +1,4 @@
+project_id = "xvvkybrudbnxsglduivt"
+
+[functions.mint-nft]
+verify_jwt = false

@@ -1,0 +1,193 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 250 45% 8%;
+    --foreground: 280 100% 98%;
+
+    --card: 250 40% 12%;
+    --card-foreground: 280 100% 98%;
+
+    --popover: 250 45% 10%;
+    --popover-foreground: 280 100% 98%;
+
+    --primary: 190 100% 50%;
+    --primary-foreground: 250 45% 8%;
+
+    --secondary: 280 65% 55%;
+    --secondary-foreground: 280 100% 98%;
+
+    --muted: 250 30% 20%;
+    --muted-foreground: 280 30% 70%;
+
+    --accent: 330 100% 60%;
+    --accent-foreground: 280 100% 98%;
+
+    --success: 150 100% 50%;
+    --success-foreground: 250 45% 8%;
+
+    --destructive: 0 85% 60%;
+    --destructive-foreground: 280 100% 98%;
+
+    --border: 250 30% 25%;
+    --input: 250 30% 25%;
+    --ring: 190 100% 50%;
+
+    --radius: 0.75rem;
+
+    /* Custom game colors */
+    --neon-cyan: 190 100% 50%;
+    --neon-pink: 330 100% 60%;
+    --neon-purple: 280 65% 55%;
+    --neon-green: 150 100% 50%;
+    --dark-base: 250 45% 8%;
+    --dark-elevated: 250 40% 12%;
+
+    /* Gradients */
+    --gradient-cyber: linear-gradient(135deg, hsl(280 65% 35%), hsl(190 100% 35%));
+    --gradient-neon: linear-gradient(90deg, hsl(190 100% 50%), hsl(280 65% 55%));
+    --gradient-danger: linear-gradient(135deg, hsl(330 100% 45%), hsl(0 85% 50%));
+    --gradient-success: linear-gradient(135deg, hsl(150 100% 40%), hsl(190 100% 45%));
+
+    /* Glows */
+    --glow-cyan: 0 0 20px hsl(190 100% 50% / 0.5), 0 0 40px hsl(190 100% 50% / 0.3);
+    --glow-pink: 0 0 20px hsl(330 100% 60% / 0.5), 0 0 40px hsl(330 100% 60% / 0.3);
+    --glow-purple: 0 0 20px hsl(280 65% 55% / 0.5), 0 0 40px hsl(280 65% 55% / 0.3);
+
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    background: radial-gradient(ellipse at top, hsl(250 45% 12%), hsl(250 45% 8%));
+    min-height: 100vh;
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+  }
+
+  @keyframes flip {
+    0% { 
+      transform: perspective(1000px) rotateY(0deg) scale(1);
+    }
+    50% {
+      transform: perspective(1000px) rotateY(90deg) scale(1.1);
+    }
+    100% { 
+      transform: perspective(1000px) rotateY(180deg) scale(1);
+    }
+  }
+
+  @keyframes shake {
+    0%, 100% { transform: translateX(0) rotate(0deg); }
+    25% { transform: translateX(-10px) rotate(-5deg); }
+    50% { transform: translateX(10px) rotate(5deg); }
+    75% { transform: translateX(-8px) rotate(-3deg); }
+  }
+
+  @keyframes bounce-in {
+    0% { 
+      transform: scale(0.3) translateY(-50px);
+      opacity: 0;
+    }
+    50% {
+      transform: scale(1.1);
+    }
+    70% {
+      transform: scale(0.9);
+    }
+    100% { 
+      transform: scale(1) translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes glow-pulse {
+    0%, 100% { 
+      box-shadow: 0 0 20px currentColor, 0 0 40px currentColor;
+    }
+    50% { 
+      box-shadow: 0 0 30px currentColor, 0 0 60px currentColor;
+    }
+  }
+
+  @keyframes rotate-glow {
+    0% { 
+      transform: rotate(0deg);
+      filter: brightness(1);
+    }
+    50% { 
+      transform: rotate(180deg);
+      filter: brightness(1.5);
+    }
+    100% { 
+      transform: rotate(360deg);
+      filter: brightness(1);
+    }
+  }
+
+  @keyframes scale-in {
+    0% {
+      transform: scale(0.8);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 3s ease-in-out infinite;
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .tile-flip {
+    animation: flip 0.8s cubic-bezier(0.4, 0.0, 0.2, 1);
+    transform-style: preserve-3d;
+  }
+
+  .tile-shake {
+    animation: shake 0.5s ease-in-out;
+  }
+
+  .tile-bounce {
+    animation: bounce-in 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+  .animate-glow-pulse {
+    animation: glow-pulse 2s ease-in-out infinite;
+  }
+
+  .animate-rotate-glow {
+    animation: rotate-glow 4s linear infinite;
+  }
+
+  .animate-scale-in {
+    animation: scale-in 0.3s ease-out;
+  }
+}
