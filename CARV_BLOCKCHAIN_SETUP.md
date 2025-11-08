@@ -1,99 +1,90 @@
-# راهنمای اتصال به CARV Blockchain
+## CARV Blockchain Connection Guide
 
-## نصب و راه‌اندازی
+## Installation and Setup
 
-### 1️⃣ پیش‌نیازها
+### 1️⃣ Prerequisites
+To use blockchain features, you need:
+- **Solana-compatible Wallet** (e.g., Phantom or Solflare)
+- **CARV Testnet SOL** for transaction fees
 
-برای استفاده از ویژگی‌های بلاکچین، شما نیاز دارید به:
+### 2️⃣ Wallet Connection
+1. Install a wallet extension (Phantom recommended)
+2. Click the "Select Wallet" button in the top-right corner of the page
+3. Select your wallet and confirm the connection
+4. Your wallet will connect to the CARV Testnet
 
-- **Wallet متوافق با Solana** (مثل Phantom یا Solflare)
-- **CARV Testnet SOL** برای پرداخت transaction fees
+### 3️⃣ Get Test SOL
+To use blockchain features, you need some SOL:
+1. Go to [CARV Bridge](https://bridge.testnet.carv.io)
+2. Enter your wallet address
+3. Request Test SOL
+4. Wait for confirmation (usually a few seconds)
 
-### 2️⃣ اتصال کیف پول
+### 4️⃣ Blockchain Features
 
-1. نصب یک wallet extension (Phantom توصیه می‌شود)
-2. کلیک روی دکمه "Select Wallet" در گوشه بالای صفحه
-3. انتخاب wallet خود و تأیید اتصال
-4. Wallet شما به CARV Testnet متصل خواهد شد
+#### 🎮 Transaction on Mod Discovery
+Each time you find a Mod:
+- An on-chain transaction is sent to CARV Testnet
+- Memo containing event information
+- Transaction signature displayed in toast
+- You can view the transaction in CARV Explorer
 
-### 3️⃣ دریافت Test SOL
+#### 🏆 NFT Win
+When you win the game (find all 3 Mods):
+- A "Victory Champion" NFT is minted for you
+- NFT includes your game stats (HP, Mods Found, Tiles Revealed)
+- NFT is sent to your wallet
+- You can view the NFT in CARV Explorer
 
-برای استفاده از ویژگی‌های بلاکچین، به مقداری SOL نیاز دارید:
-
-1. به [CARV Bridge](https://bridge.testnet.carv.io) بروید
-2. آدرس wallet خود را وارد کنید
-3. درخواست Test SOL کنید
-4. منتظر تأیید بمانید (معمولاً چند ثانیه)
-
-### 4️⃣ ویژگی‌های بلاکچین
-
-#### 🎮 تراکنش هنگام پیدا کردن Mod
-
-هر بار که یک Mod پیدا می‌کنید:
-- یک تراکنش on-chain به CARV Testnet ارسال می‌شود
-- Memo حاوی اطلاعات رویداد
-- Transaction signature در toast نمایش داده می‌شود
-- می‌توانید تراکنش را در CARV Explorer مشاهده کنید
-
-#### 🏆 NFT برد
-
-وقتی بازی را می‌برید (هر 3 Mod را پیدا کنید):
-- یک NFT "Victory Champion" برای شما mint می‌شود
-- NFT شامل آمار بازی شما (HP، Mods Found، Tiles Revealed)
-- NFT به wallet شما ارسال می‌شود
-- می‌توانید NFT را در CARV Explorer مشاهده کنید
-
-### 5️⃣ تنظیمات Edge Function
-
-برای توسعه‌دهندگان، این environment variables نیاز است:
-
+### 5️⃣ Edge Function Settings
+For developers, these environment variables are required:
 ```bash
-# در Supabase Dashboard > Settings > Edge Functions > Secrets
-
-NFT_MINT_AUTHORITY_PRIVATE_KEY=[1,2,3,...] # JSON array از private key bytes
+# In Supabase Dashboard > Settings > Edge Functions > Secrets
+NFT_MINT_AUTHORITY_PRIVATE_KEY=[1,2,3,...] # JSON array of private key bytes
 TREASURY_WALLET_ADDRESS=YourWalletAddressHere
 ```
 
-#### ساخت Keypair جدید
+#### Generate New Keypair
 
 ```typescript
 import { Keypair } from '@solana/web3.js';
-
 const keypair = Keypair.generate();
 console.log('Public Key:', keypair.publicKey.toString());
 console.log('Secret Key:', JSON.stringify(Array.from(keypair.secretKey)));
 ```
 
-### 6️⃣ لینک‌های مفید
+### 6️⃣ Useful Links
 
 - **CARV RPC**: `https://rpc.testnet.carv.io/rpc`
 - **CARV Explorer**: https://explorer.testnet.carv.io
 - **CARV Bridge**: https://bridge.testnet.carv.io
 - **CARV Docs**: https://docs.carv.io
 
-### 🔧 عیب‌یابی
+###🔧 Troubleshooting
+"Insufficient SOL balance"
 
-#### "Insufficient SOL balance"
-- به CARV Bridge بروید و Test SOL دریافت کنید
-- حداقل 0.01 SOL برای transaction fees نیاز دارید
+Go to CARV Bridge and get Test SOL
+You need at least 0.01 SOL for transaction fees
 
-#### "Wallet not connected"
-- مطمئن شوید wallet extension نصب است
-- دکمه "Select Wallet" را کلیک کرده و دوباره اتصال برقرار کنید
+"Wallet not connected"
 
-#### "Transaction failed"
-- شبکه CARV Testnet را چک کنید
-- موجودی SOL خود را بررسی کنید
-- اتصال اینترنت خود را بررسی کنید
+Ensure wallet extension is installed
+Click "Select Wallet" button and reconnect
 
-### 📝 نکات
+"Transaction failed"
 
-- همه تراکنش‌ها در CARV **Testnet** انجام می‌شود (بدون ارزش واقعی)
-- اگر wallet متصل نباشد، بازی به صورت معمولی کار می‌کند
-- ویژگی‌های blockchain اختیاری هستند
-- همه تراکنش‌ها async هستند و بازی را block نمی‌کنند
+Check CARV Testnet network
+Check your SOL balance
+Check your internet connection
 
-### 🎯 معماری فنی
+###📝 Notes
+
+All transactions are on CARV Testnet (no real value)
+If wallet is not connected, the game works normally
+Blockchain features are optional
+All transactions are async and do not block the game
+
+🎯 Technical Architecture
 
 ```
 [Client] --> [Wallet Adapter] --> [CARV RPC]
@@ -105,4 +96,4 @@ console.log('Secret Key:', JSON.stringify(Array.from(keypair.secretKey)));
 [Edge Function] ----------------> [Mint NFT]
 ```
 
-برای سوالات بیشتر، به [مستندات CARV](https://docs.carv.io) مراجعه کنید.
+For more questions, refer to CARV [Documentation](https://docs.carv.io/).
